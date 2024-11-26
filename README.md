@@ -1,36 +1,200 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FCFF建模网站需求文档
 
-## Getting Started
+## 1. 项目概述
 
-First, run the development server:
+### 1.1 项目目标
+开发一个基于网页的FCFF（企业自由现金流）建模系统，能够通过上传年报或CSV文件进行自动化数据提取和分析，并提供AI辅助建模功能和详细的数据可视化展示。
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### 1.2 项目背景
+在金融分析和企业估值领域，FCFF模型是一个重要的评估工具。本项目旨在通过自动化和AI技术简化建模过程，提高分析效率和准确性。
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 2. 功能需求
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 2.1 核心功能
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+#### 2.1.1 文件输入与处理
+- **支持的文件格式**
+  - 年度报告（PDF格式）
+  - CSV文件
+  - Excel文件
+  - XBRL格式文件
+- **文件处理功能**
+  - 批量文件上传
+  - 文件格式验证
+  - 处理进度显示
+  - 错误提示和处理
 
-## Learn More
+#### 2.1.2 数据提取系统
+- **自动化数据提取**
+  - 利润表关键指标提取
+  - 资产负债表数据提取
+  - 现金流量表数据提取
+- **AI辅助功能**
+  - 集成Deepseek API
+  - 集成Claude API
+  - 数据准确性验证
+  - 异常检测
+- **数据处理**
+  - 手动数据修正功能
+  - 数据映射配置
+  - 数据验证规则设置
 
-To learn more about Next.js, take a look at the following resources:
+#### 2.1.3 FCFF建模功能
+- **分步骤建模流程**
+  1. 收入预测
+  2. 成本结构分析
+  3. 营运资金计算
+  4. 资本支出估算
+  5. 税率调整
+- **模型计算功能**
+  - 多场景增长率设置
+  - 终值计算选项
+  - WACC计算器
+  - 敏感性分析工具
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#### 2.1.4 数据可视化
+- **可视化组件**
+  - 历史vs预测对比图
+  - 瀑布图
+  - 构成分析图
+  - 趋势分析图
+- **交互功能**
+  - 自定义仪表板
+  - 实时数据更新
+  - 图表导出功能
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 2.2 扩展功能
 
-## Deploy on Vercel
+#### 2.2.1 模型管理
+- 模型模板保存和加载
+- 版本控制
+- 模型对比工具
+- 修改记录追踪
+- 假设条件文档化
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+#### 2.2.2 协作功能
+- 多用户访问控制
+- 评论和标注系统
+- 模型共享功能
+- 实时协作
+- 变更跟踪和审批流程
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+#### 2.2.3 分析工具
+- 行业对标比较
+- 情景分析
+- 蒙特卡洛模拟
+- 敏感性测试
+- 盈亏平衡分析
+
+## 3. 技术要求
+
+### 3.1 AI集成
+- **Deepseek API集成**
+  - API调用接口实现：相关文档如下：https://api-docs.deepseek.com/zh-cn/guides/multi_round_chat/
+  - 数据处理流程
+  - 错误处理机制
+- **Claude API集成**
+  - API调用接口实现：claude的接口API 相关文档如下：https://docs.anthropic.com/zh-CN/api/client-sdks
+  - 响应处理机制
+  - 失败重试策略
+
+### 3.2 系统性能
+- 页面加载时间 < 3秒
+- 文件处理响应时间 < 30秒
+- 支持并发用户数 > 100
+- 浏览器兼容性要求
+  - Chrome最新版
+  - Firefox最新版
+  - Safari最新版
+  - Edge最新版
+
+### 3.3 安全要求
+- 数据传输加密（HTTPS）
+- 用户认证和授权
+- 敏感数据加密存储
+- 操作日志记录
+
+## 4. 用户界面要求
+
+### 4.1 界面设计原则
+- 简洁清晰的布局
+- 直观的操作流程
+- 响应式设计
+- 专业的金融分析风格
+
+### 4.2 主要界面组件
+- 文件上传区域
+- 数据预览和编辑界面
+- 模型构建向导
+- 可视化展示区域
+- 分析结果导出界面
+
+## 5. 系统集成
+
+### 5.1 外部系统集成
+- Deepseek API
+- Claude API
+- 数据导出接口
+- 外部数据源接口
+
+### 5.2 数据格式支持
+- PDF
+- CSV
+- Excel
+- XBRL
+- JSON/XML导出
+
+## 6. 部署要求
+
+### 6.1 环境要求
+- 云服务器部署
+- 数据库系统
+- 缓存系统
+- 负载均衡
+
+### 6.2 运维要求
+- 系统监控
+- 备份恢复
+- 性能优化
+- 安全更新
+
+## 7. 项目风险
+
+### 7.1 技术风险
+- AI API的稳定性和准确性
+- 大规模数据处理性能
+- 系统安全性保障
+
+### 7.2 业务风险
+- 用户接受度
+- 数据准确性要求
+- 合规性要求
+
+## 8. 后续扩展考虑
+
+### 8.1 功能扩展
+- 支持更多估值模型
+- 高级数据分析功能
+- 机器学习模型优化
+
+### 8.2 集成扩展
+- 更多数据源接入
+- 第三方系统集成
+- API服务提供
+
+## 9. 开放问题
+
+1. 数据处理相关
+   - 预期的数据处理量是多少？
+   - 是否需要支持非中文年报？
+   - AI提取的准确率要求是多少？
+
+2. 用户体验相关
+   - 目标用户的技术水平如何？
+   - 是否需要离线功能？
+   - 不同用户角色的需求区别？
+
+3. 合规性相关
+   - 需要考虑哪些具体的金融法规？
+   - 是否有特定的区域性合规要求？
+   - 数据保存期限要求？
